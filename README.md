@@ -6,6 +6,5 @@ Just do
 then
 >npm run watch
 
-to execute the app
-
+to execute the ap
 To change x(1000ms default) go to sock.js and change the time in setinterval
