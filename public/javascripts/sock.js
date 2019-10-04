@@ -26,7 +26,8 @@ function cameraT(){
   ctx.translate(cameraSensor.width, 0);
   ctx.scale(-1, 1);
   cameraOutput.src=cameraSensor.toDataURL();
-  console.log(cameraOutput.src);
-}
+  var socket=io.connect(location.origin);
+    socket.emit('Image Data', cameraOutput.src);
+  }
 
 window.addEventListener("load", cameraStart, false);
