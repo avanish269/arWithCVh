@@ -12,6 +12,18 @@ io.on('connection', transfer);
 
 function transfer(socket){
   socket.on('Image Data', (data)=>{
-    console.log(data[0]+data[1]+data[2]+data[3]+data[4]+data[5]);
+    var spawn = require("child_process").spawn;
+    var pythonProcess = spawn('python',["testScript.py"]);
+    pythonProcess.stdin.write(data.data2);
+    pythonProcess.stdin.end();
+    pythonProcess.stdout.on('data', (data)=>{
+      console.log(data.toString());
+    });
+    pythonProcess.stderr.on('data', (data)=>{
+      console.log(data.toString());
+    });
+    pythonProcess.on('exit', (code)=>{
+      console.log("Code:"+code);
+    });
   });
 }

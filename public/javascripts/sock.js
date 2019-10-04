@@ -3,7 +3,7 @@ var cameraView=document.querySelector("#camera--view");
 var cameraOutput=document.querySelector("#camera--output");
 var cameraSensor=document.querySelector("#camera--sensor");
 var ctx=cameraSensor.getContext("2d");
-
+var blobURL="";
 cameraSensor.style.display="none";
 cameraView.style.display="none";
 
@@ -25,9 +25,13 @@ function cameraT(){
   ctx.drawImage(cameraView, 0, 0);
   ctx.translate(cameraSensor.width, 0);
   ctx.scale(-1, 1);
+  cameraSensor.toBlob(function(blob){
+    blobURL=URL.createObjectURL(blob);
+  }, 'image/png');
   cameraOutput.src=cameraSensor.toDataURL();
   var socket=io.connect(location.origin);
-    socket.emit('Image Data', cameraOutput.src);
-  }
+  console.log(cameraOutput.src);
+  socket.emit('Image Data', {data1: blobURL, data2: cameraOutput.src});
+}
 
 window.addEventListener("load", cameraStart, false);
