@@ -18,12 +18,18 @@ function transfer(socket){
     pythonProcess.stdin.end();
     pythonProcess.stdout.on('data', (data)=>{
       console.log(data.toString());
+      //send result to client
+      socket.send(data.toString());
+      // socket.emit()
+
+
+
     });
     pythonProcess.stderr.on('data', (data)=>{
       console.log(data.toString());
     });
-    pythonProcess.on('exit', (code)=>{
-      console.log("Code:"+code);
-    });
+    // pythonProcess.on('exit', (code)=>{
+    //   console.log("Code:"+code);
+    // });
   });
 }
