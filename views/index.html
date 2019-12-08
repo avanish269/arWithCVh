@@ -10,9 +10,27 @@
 <body>
     <main id="camera">
         <canvas id="camera--sensor"></canvas>
+        <div id="video_box">
+        <div id="clippedDiv"></div>
+        <div>
         <video id="camera--view" autoplay playsinline></video>
+        </div>
         <img src="//:0" alt="" id="camera--output">
+      </div>
     </main>
     <script src="javascripts/sock.js"></script>
 </body>
 </html>
+
+<!--
+<div id="wrap_video">
+
+<div id="video_box">
+    <div id="video_overlays"></div>
+    <div>
+        <video id="player" src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.ogv"  type="video/mp4" onclick="this.play();">Your browser does not support this streaming content.</video>
+    </div>
+</div>
+
+</div>
+-->
